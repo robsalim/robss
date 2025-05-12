@@ -38,7 +38,7 @@
         function sendCommand(cmd) {
             if (window.Telegram.WebApp) {
                 // Отправляем команду через Bot API
-                fetch(`https://api.telegram.org/bot6103618693:AAFeaNa2_i0-Zqp1On9IxkCadbil9djCz3k/sendMessage?chat_id=460184612&text=${cmd}`);
+                fetch(`https://api.telegram.org/bot+/sendMessage?chat_id=+&text=${cmd}`);
                 Telegram.WebApp.showAlert("Команда отправлена: " + cmd);
             } else {
                 alert("Команда (тест): " + cmd);
