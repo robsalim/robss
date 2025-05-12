@@ -42,7 +42,7 @@
             const tgWebApp = Telegram.WebApp;
             
             document.getElementById('btn-on').addEventListener('click', () => {
-                tgWebApp.sendData(JSON.stringify({command: "on"}));
+                tgWebApp.sendData(JSON.stringify({command: "/on"}));
             });
             
             document.getElementById('btn-off').addEventListener('click', () => {
