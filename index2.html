@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <button onclick="sendCommand('on')">Включить</button>
+    <button onclick="sendCommand('off')">Выключить</button>
+
+    <script>
+        // Проверяем, что Web App запущен в Telegram
+        if (window.Telegram.WebApp) {
+            const tgWebApp = Telegram.WebApp;
+            tgWebApp.expand(); // Раскрываем на весь экран
+
+            function sendCommand(cmd) {
+                // Отправляем команду боту
+                tgWebApp.sendData(JSON.stringify({
+                    command: cmd,
+                    user_id: tgWebApp.initDataUnsafe.user?.id
+                }));
+                
+                // Закрываем Web App после отправки (опционально)
+                tgWebApp.close();
+            }
+        } else {
+            alert("Этот интерфейс работает только в Telegram!");
+        }
+    </script>
+</body>
+</html>
