@@ -38,8 +38,8 @@
         function sendCommand(cmd) {
             if (window.Telegram.WebApp) {
                 // Отправляем команду через Bot API
-                fetch(`https://api.telegram.org/bot+/sendMessage?chat_id=+&text=${cmd}`);
-                //fetch(`https://sixth-palm-espadrille.glitch.me//send-command?cmd=${cmd}`);
+                //fetch(`https://api.telegram.org/bot+/sendMessage?chat_id=+&text=${cmd}`);
+                fetch(`https://sixth-palm-espadrille.glitch.me//send-command?cmd=${cmd}`);
 
                 Telegram.WebApp.showAlert("Команда отправлена: " + cmd);
             } else {
