@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умная розетка</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🔌 Управление розеткой</h1>
+    <button id="btn-on">Включить</button>
+    <button id="btn-off">Выключить</button>
+    <p id="status">Статус: неизвестно</p>
+
+    <script>
+        // Проверяем, что Web App открыт в Telegram
+        if (window.Telegram.WebApp) {
+            Telegram.WebApp.expand(); // Раскрываем на весь экран
+            Telegram.WebApp.enableClosingConfirmation(); // Подтверждение закрытия
+
+            // Получаем данные от бота (если нужно)
+            const initData = Telegram.WebApp.initData;
+            console.log("Init Data:", initData);
+        }
+
+        // Отправка команд на сервер/бота
+        document.getElementById("btn-on").addEventListener("click", () => {
+            sendCommand("/on");
+        });
+
+        document.getElementById("btn-off").addEventListener("click", () => {
+            sendCommand("/off");
+        });
+
+        function sendCommand(cmd) {
+            if (window.Telegram.WebApp) {
+                // Отправляем команду через Bot API
+                fetch(`https://api.telegram.org/botВАШ_ТОКЕН/sendMessage?chat_id=ВАШ_CHAT_ID&text=${cmd}`);
+                Telegram.WebApp.showAlert("Команда отправлена: " + cmd);
+            } else {
+                alert("Команда (тест): " + cmd);
+            }
+        }
+    </script>
+</body>
+</html>
